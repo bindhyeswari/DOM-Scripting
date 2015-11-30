@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM API</title>
+    <link rel="stylesheet" href="base.css"/>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('The event was fired: DOMContentLoaded.');
+
+            // access the div element ... node
+            // https://developer.mozilla.org/en-US/docs/Web/API/Node
+
+            // query for a node
+            // var div = document.querySelector('div');
+            // var divs = document.getElementsByTagName('div'); // HTMLCollection
+            // console.log(divs[0]);
+            // var div = document.getElementById('first_div'); // fastest access an element
+            var divs = document.getElementsByClassName('mydiv');
+            console.log(divs);
+
+            var arr_divs = Array.prototype.slice.call(divs);
+            console.log(Array.isArray(divs));
+            console.log(arr_divs);
+
+            var section = document.querySelector('section');
+            // traverse the DOM Tree
+            console.log(section.children); // recursively
+            console.log(section.childNodes);
+            Array.prototype.slice.call(section.childNodes).forEach(function (node) {
+                console.log(node.nodeType);
+                // check for a text node
+                if (node.nodeType === 3) {
+                    console.log(node.nodeName);
+                    console.log('Text within the node: ', node.nodeValue);
+                }
+            });
+
+            // parentNode, children, childNodes, firstElementChild, firstChild
+
+            // console.log(section.textContent);
+
+        })
+
+    </script>
+</head>
+<body>
+
+    <div id="first_div" class="mydiv">First Div</div>
+    <div class="mydiv">
+        Second Div
+    </div>
+
+    <section>
+
+        Hello from the section
+
+        <div>
+            Hello from the div
+            <p>
+                Hello from the paragraph
+            </p>
+        </div>
+
+        <div>
+            Second child of the section
+        </div>
+    </section>
+
+</body>
+</html>

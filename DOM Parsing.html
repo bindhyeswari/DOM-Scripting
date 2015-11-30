@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Parsing Events</title>
+    <link rel="stylesheet" href="base.css"/>
+    <script src="deferred.js" defer></script>
+    <script src="async.js" async></script>
+    <script>
+
+        // DOM Parsing Process Timeline - Events Javascript
+        var start = new Date();
+        console.log('Hello World!');
+
+        console.log('The document\'s readystate is: ' , document.readyState);
+
+        document.addEventListener('readystatechange', function () {
+            console.log('The document\'s readystate is: ' , document.readyState, ((new Date()) - start) + ' ms');
+        });
+
+        // DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('div').innerHTML = 'Hello World from the script ... ';
+            console.log('The DOMContentLoaded event was fired at ... ', ((new Date()) - start) + ' ms');
+        });
+
+        window.onload = function () { // DOM Level 1
+            console.log('The window has loaded all the data.');
+        };
+
+        window.addEventListener('load', function () {
+            console.log('The window\'s load event was fired at ... ', ((new Date()) - start) + ' ms');
+        });
+
+    </script>
+</head>
+<body>
+    <div>
+        Hello World from the div ...
+    </div>
+
+    <img src="http://www.digitaldarrell.com/articles/NikonD2xReview/Nature4-Big.jpg" alt="nature"/>
+
+</body>
+</html>
