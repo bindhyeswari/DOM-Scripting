@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Keyboard Events</title>
+    <link rel="stylesheet" href="base.css"/>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var input = document.querySelector('input');
+
+            // track if the enter key was pressed
+            input.addEventListener('keydown', function (event) {
+                console.log(event);
+
+                if (event.keyCode === 13) {
+                    console.log('You pressed the enter key ... ');
+                }
+            });
+
+            document.querySelector('a').addEventListener('click', function (event) {
+                console.log(event);
+
+                // stop the default behavior from happening
+                event.preventDefault();
+
+            });
+
+            document.forms[0].addEventListener('submit', function (event) {
+                event.preventDefault();
+                console.log('process data before submitting ... ');
+            });
+
+            document.body.addEventListener('contextmenu', function (event) {
+                event.preventDefault();
+                console.log('prevented the default menu from appearing here ... ');
+                console.log(event.clientX, event.clientY);
+            });
+        });
+
+    </script>
+
+</head>
+<body>
+
+    <input type="text"/>
+
+    <a href="https://www.google.com">Go to Google</a>
+
+    <form action="/data" method="post">
+        <input type="text" name="username" placeholder="enter your user name ... "/>
+        <input type="submit" value="Submit information to the server ... "/>
+    </form>
+
+</body>
+</html>

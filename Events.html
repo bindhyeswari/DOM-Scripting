@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+    <link rel="stylesheet" href="base.css"/>
+    <style>
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #eee;
+        }
+
+        body {
+            height: 200%;
+        }
+
+        div#circle {
+            background-color: #777;
+            border-radius: 50%;
+            height: 24px;
+            width: 24px;
+            box-shadow: 0 0 1px 1px #aaa;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+    </style>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var circle = document.querySelector('#circle');
+            document.body.addEventListener('click', function (event) {
+                console.log(event);
+
+                circle.style.top = event.pageY - 12 + 'px';
+                circle.style.left = event.pageX - 12 + 'px';
+            });
+        })
+
+    </script>
+</head>
+<body>
+    <div style="top: 100px;" id="circle"></div>
+</body>
+</html>

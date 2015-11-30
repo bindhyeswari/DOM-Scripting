@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Manipulations</title>
+    <link rel="stylesheet" href="base.css"/>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // create the structure
+
+            // 1. Create a section element
+            // 2. Create a div element - attach the div element to the section
+            // 3. Create a paragraph element - attach the p to the div
+            // 4. Provide innerHTML to the paragraph
+            // 5. attach the section to the body of the page
+
+            var section = document.createElement('section'); // creates the section element, but does not attach it into the DOM
+            var div = document.createElement('div');
+            var paragraph = document.createElement('p');
+            paragraph.innerHTML = 'Hello World from the paragraph!';
+
+            // create a sibling paragraph and insert it before the paragraph
+            var sibling = document.createElement('p');
+            sibling.innerHTML = 'Hello World from the sibling';
+
+            section.appendChild(div); // modify the DOM - attaching children
+            div.appendChild(paragraph);
+            div.insertBefore(sibling, paragraph);
+
+            document.body.appendChild(section);
+
+            // insertBefore, removeChild
+        });
+
+    </script>
+</head>
+<body>
+
+    <section>
+        <div>
+            <p>
+                Hello world from the paragraph
+            </p>
+        </div>
+    </section>
+
+</body>
+</html>
