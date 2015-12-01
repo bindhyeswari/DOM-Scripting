@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Queueing Dots</title>
+    <link rel="stylesheet" href="../base.css"/>
+    <style>
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .circle {
+            box-shadow: 0 0 5px 2px #aaa;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .circle1 {
+            background-color: #777;
+        }
+
+        .circle2 {
+            background-color: #999999;
+        }
+
+        .circle3 {
+            background-color: #d6d6d6;
+        }
+
+    </style>
+    <script>
+
+        // queue - array of dots
+
+        function Dot(x, y) {
+            // create a circle
+            // append it to the body
+            // enqueue it into the dots queue
+
+            // this keyword refers to the new object
+
+            var div = document.createElement('div');
+            // div.setAttribute('class', 'circle circle1');
+            div.classList.add('circle');
+            div.classList.add('circle1');
+
+            div.style.top = y + 'px';
+            div.style.left = x + 'px';
+
+            this.div = div;
+        }
+
+        // var dot = new Dot(500, 200); //
+
+        function DotQueue() {
+            this.circles = [];
+        }
+
+        DotQueue.prototype.enqueue = function (dot) {
+            // remove old dots and push the new dot into the array
+            if (this.circles.length === 3) {
+                var circle = this.circles.shift();
+                document.body.removeChild(circle.div);
+            }
+
+            this.circles.push(dot);
+            document.body.appendChild(dot.div);
+
+            // change class names of the oder dots
+
+            // check the length of the array
+            console.log(this.circles.length);
+            switch(this.circles.length) {
+                case 1:
+                    break;
+                case 2:
+                    this.circles[0].div.className = 'circle circle2';
+                    break;
+                case 3:
+                    this.circles[0].div.className = 'circle circle3';
+                    this.circles[1].div.className = 'circle circle2';
+            }
+
+        };
+
+        var dots = new DotQueue();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.body.addEventListener('click', function () {
+                console.log(event.clientX, event.clientY);
+
+                var dot = new Dot(event.clientX, event.clientY);
+                dots.enqueue(dot);
+            });
+        });
+
+        // dots.circles
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
